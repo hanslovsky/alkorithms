@@ -16,6 +16,7 @@ internal class SortTest {
             Assert.assertArrayEquals(intArrayOf(-1, 0, 1), intArrayOf(1, 0, -1).bubbleSorted())
             Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.bubbleSorted())
             Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.bubbleSorted(comparator = IntComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.clone().also { it.bubbleSort() })
         }
     }
 
@@ -25,6 +26,27 @@ internal class SortTest {
             Assert.assertArrayEquals(intArrayOf(-1, 0, 1), intArrayOf(1, 0, -1).insertionSorted())
             Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.insertionSorted())
             Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.insertionSorted(comparator = IntComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.clone().also { it.insertionSort() })
+        }
+    }
+
+    @Test
+    fun testBubbleSortTypedIntArray() {
+        with (Sort) {
+            Assert.assertArrayEquals(intArrayOf(-1, 0, 1).toTypedArray(), intArrayOf(1, 0, -1).toTypedArray().bubbleSorted())
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().bubbleSorted())
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray().reversedArray(), shuffledIntArray.toTypedArray().bubbleSorted(comparator = Comparator.reverseOrder()))
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().also { it.bubbleSort() })
+        }
+    }
+
+    @Test
+    fun testInsertionSortTypedIntArray() {
+        with (Sort) {
+            Assert.assertArrayEquals(intArrayOf(-1, 0, 1), intArrayOf(1, 0, -1).insertionSorted())
+            Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.insertionSorted())
+            Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.insertionSorted(comparator = IntComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().also { it.insertionSort() })
         }
     }
 

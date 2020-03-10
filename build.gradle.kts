@@ -4,6 +4,8 @@
  * This generated file contains a sample Kotlin library project to get you started.
  */
 
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
 
     kotlin("jvm") version "1.3.70"
@@ -34,6 +36,11 @@ dependencies {
 
 //     // Use the Kotlin JUnit integration.
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+}
+
+// kotlin config
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 // jacoco config
