@@ -1,5 +1,6 @@
 package me.hanslovsky.alkorithms.sort
 
+import me.hanslovsky.alkorithms.compare.IntComparator
 import org.junit.Assert
 import org.junit.Test
 
@@ -14,7 +15,7 @@ internal class SortTest {
         with (Sort) {
             Assert.assertArrayEquals(intArrayOf(-1, 0, 1), intArrayOf(1, 0, -1).bubbleSorted())
             Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.bubbleSorted())
-            Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.bubbleSorted(comparator = Sort.IntComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.bubbleSorted(comparator = IntComparator.naturalOrderReversed))
         }
     }
 
@@ -23,7 +24,7 @@ internal class SortTest {
         with (Sort) {
             Assert.assertArrayEquals(intArrayOf(-1, 0, 1), intArrayOf(1, 0, -1).insertionSorted())
             Assert.assertArrayEquals(sortedIntArray, shuffledIntArray.insertionSorted())
-            Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.insertionSorted(comparator = Sort.IntComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedIntArray.reversedArray(), shuffledIntArray.insertionSorted(comparator = IntComparator.naturalOrderReversed))
         }
     }
 

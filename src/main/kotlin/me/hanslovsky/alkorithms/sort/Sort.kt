@@ -1,19 +1,8 @@
 package me.hanslovsky.alkorithms.sort
 
+import me.hanslovsky.alkorithms.compare.IntComparator
+
 class Sort private constructor() {
-
-    interface IntComparator {
-        fun compare(i1: Int, i2: Int): Int
-        val reversedOrder get() = Reversed[this]
-        companion object {
-            val naturalOrder = object : IntComparator { override fun compare(i1: Int, i2: Int) = i1.compareTo(i2) }
-            val naturalOrderReversed = naturalOrder.reversedOrder
-        }
-
-        object Reversed {
-            operator fun get(comparator: IntComparator) = object : IntComparator { override fun compare(i1: Int, i2: Int) = comparator.compare(i2, i1) }
-        }
-    }
 
     companion object {
 
