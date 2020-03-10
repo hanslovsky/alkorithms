@@ -1,6 +1,6 @@
 package me.hanslovsky.alkorithms.sort
 
-class Sort {
+class Sort private constructor() {
 
     interface IntComparator {
         fun compare(i1: Int, i2: Int): Int
