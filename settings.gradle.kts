@@ -8,7 +8,3 @@
  */
 
 rootProject.name = "alkorithms"
-
-// TODO how to use this version in build.gradle.kts?
-val jacocoVersion = "0.8.5"
-

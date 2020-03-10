@@ -38,7 +38,8 @@ dependencies {
 
 // jacoco config
 jacoco {
-    toolVersion = "0.8.5"
+    val jacocoVersion: String by project
+    toolVersion = jacocoVersion
 }
 
 tasks.jacocoTestReport {
