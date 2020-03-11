@@ -399,7 +399,7 @@ class Sort private constructor() {
         fun <T: Comparable<T>> Array<T>.insertionSorted(startInclusive: Int = 0, stopExclusive: Int = size) = insertionSorted(
                 startInclusive,
                 stopExclusive,
-                object : Comparator<T> { override fun compare(t1: T, t2: T) = t1.compareTo(t2) })
+                Comparator { t1, t2 -> t1.compareTo(t2) })
         fun <T> Array<T>.insertionSorted(
                 startInclusive: Int = 0,
                 stopExclusive: Int = size,
@@ -409,7 +409,7 @@ class Sort private constructor() {
         fun <T: Comparable<T>> Array<T>.insertionSort(startInclusive: Int = 0, stopExclusive: Int = size) = insertionSort(
                 startInclusive,
                 stopExclusive,
-                object : Comparator<T> { override fun compare(t1: T, t2: T) = t1.compareTo(t2) })
+                Comparator { t1, t2 -> t1.compareTo(t2) })
         fun <T> Array<T>.insertionSort(
                 startInclusive: Int = 0,
                 stopExclusive: Int = size,
