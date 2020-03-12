@@ -5,7 +5,7 @@ class Tree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversal(
+        inline fun depthFirstTraversal(
                 tree: Array<IntArray>,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) {

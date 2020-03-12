@@ -27,7 +27,7 @@ class BinaryTree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversal(
+        inline fun depthFirstTraversal(
                 tree: Tree,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) {
@@ -61,7 +61,7 @@ class BinaryTree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversal(
+        inline fun depthFirstTraversal(
                 left: IntArray,
                 right: IntArray,
                 root: Int = 0,
@@ -81,7 +81,7 @@ class BinaryTree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversal(
+        inline fun depthFirstTraversal(
                 tree: IntArray,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) = depthFirstTraversal(IndexArrayTree(tree), root, callback)
