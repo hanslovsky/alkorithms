@@ -8,11 +8,11 @@ class Tree private constructor() {
         fun depthFirstTraversal(
                 tree: Array<IntArray>,
                 root: Int = 0,
-                callback: ((Int) -> Unit)? = null) {
+                callback: (Int) -> Unit = {}) {
             val stack = ArrayList<Int>().also { it.add(root) }
             while (stack.isNotEmpty()) {
                 val node = stack.removeLast()
-                callback?.invoke(node)
+                callback(node)
                 tree[node].let { it.forEachIndexed { index, _ -> stack += it[it.size - 1 - index] } }
             }
         }
@@ -22,11 +22,11 @@ class Tree private constructor() {
         fun depthFirstTraversalRecursive(
                 tree: Array<IntArray>,
                 node: Int = 0,
-                onEnterCallback: ((Int) -> Unit)? = null,
-                onExitCallback: ((Int) -> Unit)? = null) {
-            onEnterCallback?.invoke(node)
+                onEnterCallback: (Int) -> Unit = {},
+                onExitCallback: (Int) -> Unit = {}) {
+            onEnterCallback(node)
             tree[node].forEach { depthFirstTraversalRecursive(tree, it, onEnterCallback, onExitCallback) }
-            onExitCallback?.invoke(node)
+            onExitCallback(node)
         }
     }
 }

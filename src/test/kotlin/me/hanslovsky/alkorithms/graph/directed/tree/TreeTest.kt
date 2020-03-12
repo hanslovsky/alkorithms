@@ -19,12 +19,12 @@ internal class TreeTest {
 
         mutableListOf<Int>().let { visitedNodes ->
             val visitedNodesGroundTruth = intArrayOf(0, 1, 4, 6, 2, 3, 5)
-            Tree.depthFirstTraversalRecursive(tree, 0, { visitedNodes += it })
+            Tree.depthFirstTraversalRecursive(tree, 0, onEnterCallback = { visitedNodes += it })
             Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
         }
         mutableListOf<Int>().let { visitedNodes ->
             val visitedNodesGroundTruth = intArrayOf(6, 4, 1, 2, 5, 3, 0)
-            Tree.depthFirstTraversalRecursive(tree, 0, null, { visitedNodes += it })
+            Tree.depthFirstTraversalRecursive(tree, 0)  { visitedNodes += it }
             Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
         }
 
