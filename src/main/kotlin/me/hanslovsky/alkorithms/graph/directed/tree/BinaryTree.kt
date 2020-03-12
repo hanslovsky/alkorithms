@@ -11,12 +11,12 @@ class BinaryTree private constructor() {
         operator fun get(node: Int): Int
     }
 
-    private class IndexArrayTree(private val tree: IntArray) : Tree {
+    class IndexArrayTree(private val tree: IntArray) : Tree {
         override val left = object : ChildIndex { override fun get(node: Int) = tree[2*node] }
         override val right = object : ChildIndex { override fun get(node: Int) = tree[2*node+1] }
     }
 
-    private class LeftRightArrayTree(left: IntArray, right: IntArray) : Tree {
+    class LeftRightArrayTree(left: IntArray, right: IntArray) : Tree {
         override val left = object : ChildIndex { override fun get(node: Int) = left[node] }
         override val right = object : ChildIndex { override fun get(node: Int) = right[node] }
     }

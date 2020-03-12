@@ -42,5 +42,7 @@ internal class BinaryTreeTest {
         BinaryTree.depthFirstTraversalRecursive(left, right)
         BinaryTree.depthFirstTraversal(tree)
         BinaryTree.depthFirstTraversalRecursive(tree)
+        BinaryTree.depthFirstTraversal(BinaryTree.IndexArrayTree(tree))
+        BinaryTree.depthFirstTraversalRecursive(BinaryTree.IndexArrayTree(tree))
     }
 }
