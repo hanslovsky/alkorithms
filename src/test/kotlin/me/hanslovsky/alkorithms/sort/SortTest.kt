@@ -1,5 +1,6 @@
 package me.hanslovsky.alkorithms.sort
 
+import me.hanslovsky.alkorithms.compare.BooleanComparator
 import me.hanslovsky.alkorithms.compare.ByteComparator
 import me.hanslovsky.alkorithms.compare.CharComparator
 import me.hanslovsky.alkorithms.compare.DoubleComparator
@@ -18,7 +19,7 @@ private val shuffledByteArray = shuffledIntArray.map { it.toByte() }.toByteArray
 private val sortedByteArray = shuffledByteArray.sortedArray()
 
 private val shuffledBooleanArray = sortedIntArray[sortedIntArray.size/2].let { m -> shuffledIntArray.map { it > m } }.toBooleanArray()
-//private val sortedBooleanArray = shuffledBooleanArray.sor
+private val sortedBooleanArray = shuffledBooleanArray.sortedBy { if (it) 1 else -1 }.toBooleanArray()
 
 private val shuffledCharArray = shuffledIntArray.map { it.toChar() }.toCharArray()
 private val sortedCharArray = shuffledCharArray.sortedArray()
@@ -37,6 +38,27 @@ private val sortedShortArray = shuffledShortArray.sortedArray()
 
 
 internal class SortTest {
+
+
+    @Test
+    fun testBubbleSortBooleanArray() {
+        with (Sort) {
+            Assert.assertArrayEquals(booleanArrayOf(false, true, true), booleanArrayOf(true, false, true).bubbleSorted())
+            Assert.assertArrayEquals(sortedBooleanArray, shuffledBooleanArray.bubbleSorted())
+            Assert.assertArrayEquals(sortedBooleanArray.reversedArray(), shuffledBooleanArray.bubbleSorted(comparator = BooleanComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedBooleanArray, shuffledBooleanArray.clone().also { it.bubbleSort() })
+        }
+    }
+
+    @Test
+    fun testInsertionSortBooleanArray() {
+        with (Sort) {
+            Assert.assertArrayEquals(booleanArrayOf(false, true, true), booleanArrayOf(true, false, true).insertionSorted())
+            Assert.assertArrayEquals(sortedBooleanArray, shuffledBooleanArray.insertionSorted())
+            Assert.assertArrayEquals(sortedBooleanArray.reversedArray(), shuffledBooleanArray.insertionSorted(comparator = BooleanComparator.naturalOrderReversed))
+            Assert.assertArrayEquals(sortedBooleanArray, shuffledBooleanArray.clone().also { it.insertionSort() })
+        }
+    }
 
 
     @Test
@@ -193,6 +215,7 @@ internal class SortTest {
             Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().bubbleSorted())
             Assert.assertArrayEquals(sortedIntArray.toTypedArray().reversedArray(), shuffledIntArray.toTypedArray().bubbleSorted(comparator = Comparator.reverseOrder()))
             Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().also { it.bubbleSort() })
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray().reversedArray(), shuffledIntArray.toTypedArray().also { it.bubbleSort(comparator = Comparator.reverseOrder()) })
         }
     }
 
@@ -203,6 +226,7 @@ internal class SortTest {
             Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().insertionSorted())
             Assert.assertArrayEquals(sortedIntArray.toTypedArray().reversedArray(), shuffledIntArray.toTypedArray().insertionSorted(comparator = Comparator.reverseOrder()))
             Assert.assertArrayEquals(sortedIntArray.toTypedArray(), shuffledIntArray.toTypedArray().also { it.insertionSort() })
+            Assert.assertArrayEquals(sortedIntArray.toTypedArray().reversedArray(), shuffledIntArray.toTypedArray().also { it.insertionSort(comparator = Comparator.reverseOrder()) })
         }
     }
 
