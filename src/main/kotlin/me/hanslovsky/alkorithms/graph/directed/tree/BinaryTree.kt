@@ -27,7 +27,7 @@ class BinaryTree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        inline fun depthFirstTraversal(
+        inline fun preOrderTraversal(
                 tree: Tree,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) {
@@ -43,7 +43,7 @@ class BinaryTree private constructor() {
 
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversalRecursive(
+        fun preOrderTraversalRecursive(
                 tree: Tree,
                 node: Int = 0,
                 onEnterCallback: (Int) -> Unit = {},
@@ -51,9 +51,9 @@ class BinaryTree private constructor() {
                 onExitCallback: (Int) -> Unit = {}) {
             if (node < 0) return
             onEnterCallback(node)
-            depthFirstTraversalRecursive(tree, tree.left[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
+            preOrderTraversalRecursive(tree, tree.left[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
             betweenChildrenCallBack(node)
-            depthFirstTraversalRecursive(tree, tree.right[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
+            preOrderTraversalRecursive(tree, tree.right[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
             onExitCallback(node)
         }
 
@@ -61,38 +61,38 @@ class BinaryTree private constructor() {
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        inline fun depthFirstTraversal(
+        inline fun preOrderTraversal(
                 left: IntArray,
                 right: IntArray,
                 root: Int = 0,
-                callback: (Int) -> Unit = {}) = depthFirstTraversal(LeftRightArrayTree(left, right), root, callback)
+                callback: (Int) -> Unit = {}) = preOrderTraversal(LeftRightArrayTree(left, right), root, callback)
 
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversalRecursive(
+        fun preOrderTraversalRecursive(
                 left: IntArray,
                 right: IntArray,
                 node: Int = 0,
                 onEnterCallback: (Int) -> Unit = {},
                 betweenChildrenCallBack: (Int) -> Unit = {},
-                onExitCallback: (Int) -> Unit = {}) = depthFirstTraversalRecursive(LeftRightArrayTree(left,right), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
+                onExitCallback: (Int) -> Unit = {}) = preOrderTraversalRecursive(LeftRightArrayTree(left,right), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
 
 
         @ExperimentalStdlibApi
         @JvmStatic
         @JvmOverloads
-        inline fun depthFirstTraversal(
+        inline fun preOrderTraversal(
                 tree: IntArray,
                 root: Int = 0,
-                callback: (Int) -> Unit = {}) = depthFirstTraversal(IndexArrayTree(tree), root, callback)
+                callback: (Int) -> Unit = {}) = preOrderTraversal(IndexArrayTree(tree), root, callback)
 
         @JvmStatic
         @JvmOverloads
-        fun depthFirstTraversalRecursive(
+        fun preOrderTraversalRecursive(
                 tree: IntArray,
                 node: Int = 0,
                 onEnterCallback: (Int) -> Unit = {},
                 betweenChildrenCallBack: (Int) -> Unit = {},
-                onExitCallback: (Int) -> Unit = {}) = depthFirstTraversalRecursive(IndexArrayTree(tree), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
+                onExitCallback: (Int) -> Unit = {}) = preOrderTraversalRecursive(IndexArrayTree(tree), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
     }
 }
