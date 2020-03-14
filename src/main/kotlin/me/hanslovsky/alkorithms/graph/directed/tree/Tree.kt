@@ -3,8 +3,6 @@ package me.hanslovsky.alkorithms.graph.directed.tree
 class Tree private constructor() {
     companion object {
         @ExperimentalStdlibApi
-        @JvmStatic
-        @JvmOverloads
         inline fun depthFirstTraversal(
                 tree: Array<IntArray>,
                 root: Int = 0,
@@ -17,8 +15,6 @@ class Tree private constructor() {
             }
         }
 
-        @JvmStatic
-        @JvmOverloads
         fun depthFirstTraversalRecursive(
                 tree: Array<IntArray>,
                 node: Int = 0,

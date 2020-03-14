@@ -12,37 +12,27 @@ internal class BinaryTreeTest {
         val right = intArrayOf(2, 4, -1, 6, -1, -1, -1)
         val tree = (left zip right).flatMap { it.toList() }.toIntArray()
 
+        val preOrderTraversalGroundTruth = intArrayOf(0, 1, 4, 2, 3, 5, 6)
+
         mutableListOf<Int>().let { visitedNodes ->
-            val visitedNodesGroundTruth = intArrayOf(0, 1, 4, 2, 3, 5, 6)
-            BinaryTree.preOrderTraversalRecursive(left, right, 0, { visitedNodes += it })
-            Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
+            BinaryTree.preOrderTraversalRecursive(left, right, 0) { visitedNodes += it }
+            Assert.assertArrayEquals(preOrderTraversalGroundTruth, visitedNodes.toIntArray())
         }
 
         mutableListOf<Int>().let { visitedNodes ->
-            val visitedNodesGroundTruth = intArrayOf(0, 1, 4, 2, 3, 5, 6)
             BinaryTree.preOrderTraversal(left, right, 0) { visitedNodes += it }
-            Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
+            Assert.assertArrayEquals(preOrderTraversalGroundTruth, visitedNodes.toIntArray())
         }
 
         mutableListOf<Int>().let { visitedNodes ->
-            val visitedNodesGroundTruth = intArrayOf(0, 1, 4, 2, 3, 5, 6)
-            BinaryTree.preOrderTraversalRecursive(tree, 0, { visitedNodes += it })
-            Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
+            BinaryTree.preOrderTraversalRecursive(tree, 0) { visitedNodes += it }
+            Assert.assertArrayEquals(preOrderTraversalGroundTruth, visitedNodes.toIntArray())
         }
 
         mutableListOf<Int>().let { visitedNodes ->
-            val visitedNodesGroundTruth = intArrayOf(0, 1, 4, 2, 3, 5, 6)
             BinaryTree.preOrderTraversal(tree, 0) { visitedNodes += it }
-            Assert.assertArrayEquals(visitedNodesGroundTruth, visitedNodes.toIntArray())
+            Assert.assertArrayEquals(preOrderTraversalGroundTruth, visitedNodes.toIntArray())
         }
 
-
-        // these calls are necessary to cover all possible overloads
-        BinaryTree.preOrderTraversal(left, right)
-        BinaryTree.preOrderTraversalRecursive(left, right)
-        BinaryTree.preOrderTraversal(tree)
-        BinaryTree.preOrderTraversalRecursive(tree)
-        BinaryTree.preOrderTraversal(BinaryTree.IndexArrayTree(tree))
-        BinaryTree.preOrderTraversalRecursive(BinaryTree.IndexArrayTree(tree))
     }
 }

@@ -25,8 +25,6 @@ class BinaryTree private constructor() {
 
     companion object {
         @ExperimentalStdlibApi
-        @JvmStatic
-        @JvmOverloads
         inline fun preOrderTraversal(
                 tree: Tree,
                 root: Int = 0,
@@ -41,58 +39,40 @@ class BinaryTree private constructor() {
             }
         }
 
-        @JvmStatic
-        @JvmOverloads
         fun preOrderTraversalRecursive(
                 tree: Tree,
                 node: Int = 0,
-                onEnterCallback: (Int) -> Unit = {},
-                betweenChildrenCallBack: (Int) -> Unit = {},
-                onExitCallback: (Int) -> Unit = {}) {
+                callback: (Int) -> Unit = {}) {
             if (node < 0) return
-            onEnterCallback(node)
-            preOrderTraversalRecursive(tree, tree.left[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
-            betweenChildrenCallBack(node)
-            preOrderTraversalRecursive(tree, tree.right[node], onEnterCallback, betweenChildrenCallBack, onExitCallback)
-            onExitCallback(node)
+            callback(node)
+            preOrderTraversalRecursive(tree, tree.left[node], callback)
+            preOrderTraversalRecursive(tree, tree.right[node], callback)
         }
 
 
         @ExperimentalStdlibApi
-        @JvmStatic
-        @JvmOverloads
         inline fun preOrderTraversal(
                 left: IntArray,
                 right: IntArray,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) = preOrderTraversal(LeftRightArrayTree(left, right), root, callback)
 
-        @JvmStatic
-        @JvmOverloads
         fun preOrderTraversalRecursive(
                 left: IntArray,
                 right: IntArray,
                 node: Int = 0,
-                onEnterCallback: (Int) -> Unit = {},
-                betweenChildrenCallBack: (Int) -> Unit = {},
-                onExitCallback: (Int) -> Unit = {}) = preOrderTraversalRecursive(LeftRightArrayTree(left,right), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
+                callback: (Int) -> Unit = {}) = preOrderTraversalRecursive(LeftRightArrayTree(left,right), node, callback)
 
 
         @ExperimentalStdlibApi
-        @JvmStatic
-        @JvmOverloads
         inline fun preOrderTraversal(
                 tree: IntArray,
                 root: Int = 0,
                 callback: (Int) -> Unit = {}) = preOrderTraversal(IndexArrayTree(tree), root, callback)
 
-        @JvmStatic
-        @JvmOverloads
         fun preOrderTraversalRecursive(
                 tree: IntArray,
                 node: Int = 0,
-                onEnterCallback: (Int) -> Unit = {},
-                betweenChildrenCallBack: (Int) -> Unit = {},
-                onExitCallback: (Int) -> Unit = {}) = preOrderTraversalRecursive(IndexArrayTree(tree), node, onEnterCallback, betweenChildrenCallBack, onExitCallback)
+                callback: (Int) -> Unit = {}) = preOrderTraversalRecursive(IndexArrayTree(tree), node, callback)
     }
 }
