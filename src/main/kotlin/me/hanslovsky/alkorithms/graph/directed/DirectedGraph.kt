@@ -58,6 +58,39 @@ interface DirectedGraph {
                 }
             }
         }
+
+        @ExperimentalStdlibApi
+        inline fun DirectedGraph.shortestPath(
+                from: Int,
+                to: Int,
+                callback: (Int) -> Unit = {})  = shortestPath(from, { it == to }, callback)
+
+        @ExperimentalStdlibApi
+        inline fun DirectedGraph.shortestPath(from: Int, to: (Int) -> Boolean = { false }, callback: (Int) -> Unit = {}): IntArray? {
+            val queue = ArrayDeque<Int>().also { it.add(from) }
+            val parents = HashMap<Int, Int>().also { it[from] = from }
+            while (queue.isNotEmpty()) {
+                val current = queue.removeFirst()
+                callback(current)
+                if (to(current)) {
+                    var node = current
+                    val path = ArrayList<Int>().also { it += node }
+                    while (node != from) {
+                        node = parents[node]!!
+                        path += node
+                    }
+                    return path.toIntArray().also { it.reverse() }
+                }
+                val children = this[current]
+                for (child in children) {
+                    if (child in parents)
+                        continue
+                    queue += child
+                    parents[child] = current
+                }
+            }
+            return null
+        }
     }
 
 }
@@ -74,5 +107,7 @@ fun main() {
         graph.breadthFirstSearch(2) { println(it) }
         println()
         graph.depthFirstSearch(2) { println(it) }
+        println()
+        println(graph.shortestPath(0, 3)?.joinToString())
     }
 }
